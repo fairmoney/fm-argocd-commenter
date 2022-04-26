@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller-manager
-  name: argocd-commenter-controller-manager
+  name: argocd-commenter
   namespace: argocd
 spec:
   replicas: 1
@@ -36,25 +36,25 @@ spec:
           valueFrom:
             secretKeyRef:
               key: GITHUB_TOKEN
-              name: controller-manager
+              name: argocd-commenter-secret
               optional: true
         - name: GITHUB_APP_ID
           valueFrom:
             secretKeyRef:
               key: GITHUB_APP_ID
-              name: controller-manager
+              name: argocd-commenter-secret
               optional: true
         - name: GITHUB_APP_INSTALLATION_ID
           valueFrom:
             secretKeyRef:
               key: GITHUB_APP_INSTALLATION_ID
-              name: controller-manager
+              name: argocd-commenter-secret
               optional: true
         - name: GITHUB_APP_PRIVATE_KEY
           valueFrom:
             secretKeyRef:
               key: GITHUB_APP_PRIVATE_KEY
-              name: controller-manager
+              name: argocd-commenter-secret
               optional: true
         image: ghcr.io/int128/argocd-commenter:v1.8.0
         name: manager
