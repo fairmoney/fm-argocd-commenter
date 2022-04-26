@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  argocd-commenter:
+  - apiVersion: v2
+    appVersion: v1.18.0
+    created: "2022-04-26T15:22:47.071255+05:30"
+    description: A Helm chart for argocd-commenter
+    digest: 82420e94f7744a627b959476e6e959c75bb6f9185f713b88772182d3c4e3ca62
+    name: argocd-commenter
+    type: application
+    urls:
+    - https://fairmoney.github.io/fm-argocd-commenter/argocd-commenter-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-04-26T15:22:47.070811+05:30"
