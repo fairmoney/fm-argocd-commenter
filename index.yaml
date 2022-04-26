@@ -8,6 +8,8 @@ entries:
     digest: c2ab2fcee88ee1bcf6c13ad71f56665d909f071b9448a3fa5d00c8ac4b1a6310
     name: argocd-commenter
     type: application
+    sources:
+    – https://github.com/fairmoney/fm-argocd-commenter
     urls:
     - https://github.com/fairmoney/fm-argocd-commenter/releases/download/v1.8.0/argocd-commenter-1.0.0.tgz
     version: 1.0.0
