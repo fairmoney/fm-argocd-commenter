@@ -9,6 +9,6 @@ entries:
     name: argocd-commenter
     type: application
     urls:
-    - https://github.com/fairmoney/fm-argocd-commenter/releases/download/v1.8.0/argocd-commenter-1.0.0.tgz
+    - "https://github.com/fairmoney/fm-argocd-commenter/releases/download/v1.8.0/argocd-commenter-1.0.0.tgz"
     version: 1.0.0
 generated: "2022-04-26T13:35:37.565699+05:30"
