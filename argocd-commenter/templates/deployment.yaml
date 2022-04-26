@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: argocd-commenter-controller-manager
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=10
+        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+      - args:
+        - --metrics-addr=127.0.0.1:8080
+        - --enable-leader-election
+        command:
+        - /manager
+        env:
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: GITHUB_TOKEN
+              name: controller-manager
+              optional: true
+        - name: GITHUB_APP_ID
+          valueFrom:
+            secretKeyRef:
+              key: GITHUB_APP_ID
+              name: controller-manager
+              optional: true
+        - name: GITHUB_APP_INSTALLATION_ID
+          valueFrom:
+            secretKeyRef:
+              key: GITHUB_APP_INSTALLATION_ID
+              name: controller-manager
+              optional: true
+        - name: GITHUB_APP_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              key: GITHUB_APP_PRIVATE_KEY
+              name: controller-manager
+              optional: true
+        image: ghcr.io/int128/argocd-commenter:v1.8.0
+        name: manager
+        resources:
+          limits:
+            cpu: 100m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+      terminationGracePeriodSeconds: 10

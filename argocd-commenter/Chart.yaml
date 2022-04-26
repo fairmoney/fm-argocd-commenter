@@ -1,0 +1,8 @@
+apiVersion: v2
+name: argocd-commenter
+description: A Helm chart for argocd-commenter
+type: application
+
+version: "1.0.0"
+
+appVersion: "v1.18.0"
